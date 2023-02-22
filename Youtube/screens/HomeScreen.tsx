@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import { VideoListItem } from "../components/Video List Item/VideoListItem";
 import videos from "../assets/data/videos.json";
 
@@ -12,7 +12,5 @@ const HomeScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export { HomeScreen };

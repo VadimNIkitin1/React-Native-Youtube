@@ -1,4 +1,5 @@
-import { Text, View, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Text, View, Image, Pressable } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 
@@ -22,6 +23,8 @@ const VideoListItem = (props: VideoListItemProps) => {
   const { video } = props;
   const { thumbnail, duration, user, title, createdAt, views } = video;
 
+  const navigation = useNavigation();
+
   const min = Math.floor(duration / 60);
   const sec = duration % 60;
 
@@ -32,8 +35,12 @@ const VideoListItem = (props: VideoListItemProps) => {
     viewsString = (views / 1_000).toFixed(1) + "k";
   }
 
+  const openVideoScreen = () => {
+    navigation.navigate("VideoScreen", { id: video.id });
+  };
+
   return (
-    <View style={styles.videoCard}>
+    <Pressable style={styles.videoCard} onPress={openVideoScreen}>
       <View>
         <Image
           style={styles.thumbnail}
@@ -64,7 +71,7 @@ const VideoListItem = (props: VideoListItemProps) => {
         </View>
         <Entypo name="dots-three-vertical" size={16} color={"grey"} />
       </View>
-    </View>
+    </Pressable>
   );
 };
 

@@ -40,97 +40,95 @@ const VideoScreen = (props: VideoScreenProps) => {
   };
 
   return (
-    <GestureHandlerRootView>
-      <View style={styles.container}>
-        <VideoPlayer videoURI={video.videoUrl} thumbnailURI={video.thumbnail} />
-        <View style={{ flex: 1 }}>
-          <View style={styles.midleContainer}>
-            <Text style={styles.tags}>{video.tags}</Text>
-            <Text style={styles.title}>{video.title}</Text>
-            <Text style={styles.subtitle}>
-              {video.user.name} {viewsString}
-              {video.createdAt}
-            </Text>
-          </View>
-          <View style={styles.actionListContainer}>
-            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <View style={styles.actionListItem}>
-                <AntDesign name="like2" size={30} color="lightgray" />
-                <Text style={styles.actionText}>{video.likes}</Text>
-              </View>
-              <View style={styles.actionListItem}>
-                <AntDesign name="dislike2" size={30} color="lightgray" />
-                <Text style={styles.actionText}>{video.dislikes}</Text>
-              </View>
-              <View style={styles.actionListItem}>
-                <AntDesign name="export" size={30} color="lightgray" />
-                <Text style={styles.actionText}>{video.dislikes}</Text>
-              </View>
-              <View style={styles.actionListItem}>
-                <AntDesign name="download" size={30} color="lightgray" />
-                <Text style={styles.actionText}>{video.dislikes}</Text>
-              </View>
-              <View style={styles.actionListItem}>
-                <AntDesign name="download" size={30} color="lightgray" />
-                <Text style={styles.actionText}>{video.dislikes}</Text>
-              </View>
-              <View style={styles.actionListItem}>
-                <AntDesign name="download" size={30} color="lightgray" />
-                <Text style={styles.actionText}>{video.dislikes}</Text>
-              </View>
-              <View style={styles.actionListItem}>
-                <AntDesign name="download" size={30} color="lightgray" />
-                <Text style={styles.actionText}>{video.dislikes}</Text>
-              </View>
-              <View style={styles.actionListItem}>
-                <AntDesign name="download" size={30} color="lightgray" />
-                <Text style={styles.actionText}>{video.dislikes}</Text>
-              </View>
-            </ScrollView>
-          </View>
-          <View style={styles.userInfocontainer}>
-            <Image style={styles.avatar} source={{ uri: video.user.image }} />
-            <View style={{ marginHorizontal: 10, flex: 1 }}>
-              <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>
-                {video.user.name}
-              </Text>
-              <Text style={{ color: "gray", fontSize: 14 }}>
-                {video.user.subscribers} subscribers
-              </Text>
-            </View>
-            <Text
-              style={{
-                color: "darkred",
-                fontSize: 18,
-                fontWeight: "500",
-                padding: 10,
-              }}
-            >
-              SUBSCRIBE
-            </Text>
-          </View>
-          {/* Comment */}
-          <Pressable
-            onPress={openComments}
-            style={{ padding: 10, marginVertical: 10 }}
-          >
-            <Text style={{ color: "#fff" }}>Comments 303</Text>
-            {comments.length > 0 && <VideoComment comment={comments[0]} />}
-          </Pressable>
-          {/* All comments */}
-          <BottomSheetModal
-            ref={commentsSheetRef}
-            snapPoints={["70%"]}
-            enablePanDownToClose
-            backgroundComponent={({ style }) => (
-              <View style={[style, { backgroundColor: "#4d4d4d" }]} />
-            )}
-          >
-            <VideoComments />
-          </BottomSheetModal>
+    <View style={styles.container}>
+      <VideoPlayer videoURI={video.videoUrl} thumbnailURI={video.thumbnail} />
+      <View style={{ flex: 1 }}>
+        <View style={styles.midleContainer}>
+          <Text style={styles.tags}>{video.tags}</Text>
+          <Text style={styles.title}>{video.title}</Text>
+          <Text style={styles.subtitle}>
+            {video.user.name} {viewsString}
+            {video.createdAt}
+          </Text>
         </View>
+        <View style={styles.actionListContainer}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View style={styles.actionListItem}>
+              <AntDesign name="like2" size={30} color="lightgray" />
+              <Text style={styles.actionText}>{video.likes}</Text>
+            </View>
+            <View style={styles.actionListItem}>
+              <AntDesign name="dislike2" size={30} color="lightgray" />
+              <Text style={styles.actionText}>{video.dislikes}</Text>
+            </View>
+            <View style={styles.actionListItem}>
+              <AntDesign name="export" size={30} color="lightgray" />
+              <Text style={styles.actionText}>{video.dislikes}</Text>
+            </View>
+            <View style={styles.actionListItem}>
+              <AntDesign name="download" size={30} color="lightgray" />
+              <Text style={styles.actionText}>{video.dislikes}</Text>
+            </View>
+            <View style={styles.actionListItem}>
+              <AntDesign name="download" size={30} color="lightgray" />
+              <Text style={styles.actionText}>{video.dislikes}</Text>
+            </View>
+            <View style={styles.actionListItem}>
+              <AntDesign name="download" size={30} color="lightgray" />
+              <Text style={styles.actionText}>{video.dislikes}</Text>
+            </View>
+            <View style={styles.actionListItem}>
+              <AntDesign name="download" size={30} color="lightgray" />
+              <Text style={styles.actionText}>{video.dislikes}</Text>
+            </View>
+            <View style={styles.actionListItem}>
+              <AntDesign name="download" size={30} color="lightgray" />
+              <Text style={styles.actionText}>{video.dislikes}</Text>
+            </View>
+          </ScrollView>
+        </View>
+        <View style={styles.userInfocontainer}>
+          <Image style={styles.avatar} source={{ uri: video.user.image }} />
+          <View style={{ marginHorizontal: 10, flex: 1 }}>
+            <Text style={{ color: "#fff", fontSize: 18, fontWeight: "bold" }}>
+              {video.user.name}
+            </Text>
+            <Text style={{ color: "gray", fontSize: 14 }}>
+              {video.user.subscribers} subscribers
+            </Text>
+          </View>
+          <Text
+            style={{
+              color: "darkred",
+              fontSize: 18,
+              fontWeight: "500",
+              padding: 10,
+            }}
+          >
+            SUBSCRIBE
+          </Text>
+        </View>
+        {/* Comment */}
+        <Pressable
+          onPress={openComments}
+          style={{ padding: 10, marginVertical: 10 }}
+        >
+          <Text style={{ color: "#fff" }}>Comments 303</Text>
+          {comments.length > 0 && <VideoComment comment={comments[0]} />}
+        </Pressable>
+        {/* All comments */}
+        <BottomSheetModal
+          ref={commentsSheetRef}
+          snapPoints={["70%"]}
+          enablePanDownToClose
+          backgroundComponent={({ style }) => (
+            <View style={[style, { backgroundColor: "#4d4d4d" }]} />
+          )}
+        >
+          <VideoComments />
+        </BottomSheetModal>
       </View>
-    </GestureHandlerRootView>
+    </View>
   );
 };
 

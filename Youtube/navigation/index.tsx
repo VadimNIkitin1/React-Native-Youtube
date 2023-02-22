@@ -3,6 +3,14 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
+
+import {
+  Foundation,
+  Ionicons,
+  AntDesign,
+  MaterialIcons,
+} from "@expo/vector-icons";
+
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -27,6 +35,7 @@ import {
   RootTabScreenProps,
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
+import VideoScreen from "../screens/Video Screen/VideoScreen";
 
 export default function Navigation({
   colorScheme,
@@ -51,20 +60,14 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Root"
-        component={BottomTabNavigator}
-        options={{ headerShown: false }}
-      />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Root" component={BottomTabNavigator} />
+      <Stack.Screen name="VideoScreen" component={VideoScreen} />
       <Stack.Screen
         name="NotFound"
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
       />
-      <Stack.Group screenOptions={{ presentation: "modal" }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
     </Stack.Navigator>
   );
 }
@@ -80,52 +83,57 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Home"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarLabelPosition: "below-icon",
       }}
     >
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}
-        options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
-          title: "Home",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate("Modal")}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}
-            >
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Foundation name="home" size={24} color={color} />
           ),
-        })}
+        }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Explore"
         component={TabTwoScreen}
         options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="compass-outline" size={24} color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="New"
+        component={TabTwoScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <AntDesign name="pluscircleo" size={24} color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Subscriptions"
+        component={TabTwoScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="subscriptions" size={24} color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Library"
+        component={TabTwoScreen}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="video-collection" size={24} color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>
   );
-}
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
