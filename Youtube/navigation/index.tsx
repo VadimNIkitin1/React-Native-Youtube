@@ -10,8 +10,6 @@ import {
   AntDesign,
   MaterialIcons,
 } from "@expo/vector-icons";
-
-import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
   NavigationContainer,
@@ -36,6 +34,7 @@ import {
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import VideoScreen from "../screens/Video Screen/VideoScreen";
+import { HomeStackComponent } from "./HomeStack";
 
 export default function Navigation({
   colorScheme,
@@ -87,11 +86,12 @@ function BottomTabNavigator() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
         tabBarLabelPosition: "below-icon",
+        headerShown: false,
       }}
     >
       <BottomTab.Screen
         name="Home"
-        component={HomeScreen}
+        component={HomeStackComponent}
         options={{
           tabBarIcon: ({ color }) => (
             <Foundation name="home" size={24} color={color} />
